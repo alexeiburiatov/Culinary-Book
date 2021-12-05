@@ -4,26 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Culinary_Book.Database
-{
+
+
     namespace Culinary_Book
     {
-        static class Program
+    
+    static class Program
         {
-            static Database Fsdf = new Database();
-            
+        private static Database.CookBookDB db = new Database.CookBookDB();
+        
 
-            /// <summary>
-            /// The main entry point for the application.
-            /// </summary>
-            [STAThread]
+        [STAThread]
             static void Main()
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new CulinaryBook());
-                Fsdf.SqlConnetionFactory.
+                Application.Run(new CulinaryBook(db));
             }
         }
     }
-}

@@ -8,31 +8,62 @@ using System.Data.SqlClient;
 
 namespace Culinary_Book.Database
 {
-    public class Database
+    public class CookBookDB
     {
-        public static string connectionString = @"Data Source=20.101.112.215;Initial Catalog=culinarybook;User ID=sa";
-        public static Database singleton;
-        public static SqlConnection sqlConnection;
-        SqlDataAdapter adapter = new SqlDataAdapter();
-
-        public SqlConnection SqlConnetionFactory
+        static string connectionString = @"Data Source=20.101.112.215;Initial Catalog=culinarybook;User ID=sa;Password=<4auq-@@XB-(c)h>";
+        static CookBookDB singleton;
+        static SqlConnection sqlConnection;
+        public CookBookDB()
         {
-
-            get { return sqlConnection; }
+            sqlConnection = new SqlConnection(connectionString);
         }
 
-            
-        public Database() { }
-
-        public static Database Singleton
+        public SqlConnection getSqlConnetion
         {
             get
             {
                 if (singleton == null)
-                    singleton = new Database();
+                {
+                    singleton = new CookBookDB();
+                }
+                return sqlConnection;
+            }
+        }
 
-                sqlConnection = new SqlConnection(connectionString);
-                return singleton;
+
+        public string getEntryStatus(string pLoginName, string pPassword) 
+        {
+            string sql = string.Format("DECLARE  @responseMessage nvarchar(250);" +
+                " EXEC private.uspLogin " +
+                    "@pLoginName," +
+                    " @pPassword," +
+                    " @responseMessage = @responseMessage OUTPUT;" +
+                " SELECT  @responseMessage as N'@responseMessage'");
+            using (SqlCommand cmd = new SqlCommand(sql, this.getSqlConnetion))
+            {
+
+                String msgEntryStatus;
+                SqlDataReader dr=null;
+                cmd.Parameters.AddWithValue("pLoginName", pLoginName);
+                cmd.Parameters.AddWithValue("pPassword", pPassword);
+                try
+                {
+                    dr = cmd.ExecuteReader();
+                    dr.Read();
+                    msgEntryStatus = dr.GetString(0);
+                    dr.Close();
+                }
+                catch (Exception e)
+                {
+                    return e.ToString();
+                }
+                //finally
+                //{
+                    
+                //}
+
+                return msgEntryStatus;
+
             }
         }
 
@@ -40,4 +71,4 @@ namespace Culinary_Book.Database
 
 
 }
-}
+
