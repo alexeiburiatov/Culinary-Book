@@ -118,6 +118,7 @@ namespace Culinary_Book
             this.textBoxLoginInput.Size = new System.Drawing.Size(172, 30);
             this.textBoxLoginInput.TabIndex = 12;
             this.textBoxLoginInput.TextChanged += new System.EventHandler(this.textBoxLoginInput_TextChanged);
+            this.textBoxLoginInput.Leave += new System.EventHandler(this.textBoxLoginInput_Leave);
             // 
             // textBoxFNameInput
             // 
@@ -127,6 +128,7 @@ namespace Culinary_Book
             this.textBoxFNameInput.Size = new System.Drawing.Size(172, 30);
             this.textBoxFNameInput.TabIndex = 13;
             this.textBoxFNameInput.TextChanged += new System.EventHandler(this.textBoxFNameInput_TextChanged);
+            this.textBoxFNameInput.Leave += new System.EventHandler(this.textBoxFNameInput_Leave);
             // 
             // textBoxLNameInput
             // 
@@ -136,6 +138,7 @@ namespace Culinary_Book
             this.textBoxLNameInput.Size = new System.Drawing.Size(172, 30);
             this.textBoxLNameInput.TabIndex = 14;
             this.textBoxLNameInput.TextChanged += new System.EventHandler(this.textBoxLNameInput_TextChanged);
+            this.textBoxLNameInput.Leave += new System.EventHandler(this.textBoxLNameInput_Leave);
             // 
             // textBoxPasswordInput
             // 
@@ -146,6 +149,7 @@ namespace Culinary_Book
             this.textBoxPasswordInput.TabIndex = 15;
             this.textBoxPasswordInput.UseSystemPasswordChar = true;
             this.textBoxPasswordInput.TextChanged += new System.EventHandler(this.textBoxPasswordInput_TextChanged);
+            this.textBoxPasswordInput.Leave += new System.EventHandler(this.textBoxPasswordInput_Leave);
             // 
             // textBoxPasswordCheckInput
             // 
@@ -156,6 +160,7 @@ namespace Culinary_Book
             this.textBoxPasswordCheckInput.TabIndex = 16;
             this.textBoxPasswordCheckInput.UseSystemPasswordChar = true;
             this.textBoxPasswordCheckInput.TextChanged += new System.EventHandler(this.textBoxPasswordCheckInput_TextChanged);
+            this.textBoxPasswordCheckInput.Leave += new System.EventHandler(this.textBoxPasswordCheckInput_Leave);
             // 
             // textBoxEmailInput
             // 
@@ -165,6 +170,7 @@ namespace Culinary_Book
             this.textBoxEmailInput.Size = new System.Drawing.Size(172, 30);
             this.textBoxEmailInput.TabIndex = 17;
             this.textBoxEmailInput.TextChanged += new System.EventHandler(this.textBoxEmailInput_TextChanged);
+            this.textBoxEmailInput.Leave += new System.EventHandler(this.textBoxEmailInput_Leave);
             // 
             // submitDataButton
             // 
@@ -200,7 +206,7 @@ namespace Culinary_Book
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1016, 601);
             this.Name = "SignUpForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Реєстрація ";
             this.ResumeLayout(false);
             this.PerformLayout();

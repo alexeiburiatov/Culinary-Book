@@ -50,12 +50,6 @@ namespace Culinary_Book
         {
 
         }
-
-        private void welcomeLabelForm1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBoxPasswordInput_TextChanged(object sender, EventArgs e)
         {
 
@@ -69,11 +63,17 @@ namespace Culinary_Book
             {
                 MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                MainForm mainForm = new MainForm(db, textBoxLoginInput.Text);
+                this.Hide();
+                mainForm.ShowDialog();
+            }
         }
 
         private void signUpButton_Click(object sender, EventArgs e)
         {
-            SignUpForm signUpForm = new SignUpForm();
+            SignUpForm signUpForm = new SignUpForm(db);
             signUpForm.ShowDialog();
         }
     }
