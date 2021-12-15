@@ -39,6 +39,7 @@ namespace Culinary_Book
             }
             
             db.getEntryStatus("adsdfsdfmin","admin");
+            db.showUserInfo("admin");
 
         }
 

@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,7 +54,37 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewRecipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewRecipe.Designer.cs">
+      <DependentUpon>NewRecipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NoteSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NoteSheet.Designer.cs">
+      <DependentUpon>NoteSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecipeDescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecipeDescription.Designer.cs">
+      <DependentUpon>RecipeDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reg\RegExpr.cs" />
+    <Compile Include="AllRecipes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllRecipes.Designer.cs">
+      <DependentUpon>AllRecipes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowRecipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowRecipe.Designer.cs">
+      <DependentUpon>ShowRecipe.cs</DependentUpon>
+    </Compile>
     <Compile Include="SignUpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +101,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewRecipe.resx">
+      <DependentUpon>NewRecipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoteSheet.resx">
+      <DependentUpon>NoteSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AllRecipes.resx">
+      <DependentUpon>AllRecipes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecipeDescription.resx">
+      <DependentUpon>RecipeDescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignUpForm.resx">
       <DependentUpon>SignUpForm.cs</DependentUpon>

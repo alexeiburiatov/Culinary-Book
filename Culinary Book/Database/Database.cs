@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
-
+using System.Data;
 
 namespace Culinary_Book.Database
 {
@@ -155,6 +155,207 @@ namespace Culinary_Book.Database
 
             }
         }
+
+        public string[] showUserInfo(string pLogin)
+        {
+
+            string sql = string.Format("EXEC private.extractPersonalInfo " +
+                "@pLogin= \""+ pLogin+"\"");
+
+            string[] pInfo= new string[3];
+            using (SqlDataAdapter myDataAdapter = new SqlDataAdapter(sql, connectionString))
+            {
+
+                DataTable result = new DataTable();
+                myDataAdapter.Fill(result);
+
+                foreach (DataRow o in result.Select())
+                {
+                    pInfo[0] = o["firstName"].ToString();
+                    pInfo[1] = o["lastName"].ToString();
+                    pInfo[2] = o["email"].ToString();
+                }
+
+            }
+
+
+
+            return pInfo;
+        }
+
+
+        public string editNote(string pLogin, string pNoteText)
+        {
+            string sql = string.Format("EXEC private.uspEditNotes " +
+                "@pLoginName, " +
+                "@pNoteText");
+            using (SqlCommand cmd = new SqlCommand(sql, this.getSqlConnetion))
+            {
+
+                String msgEntryStatus;
+                cmd.Parameters.AddWithValue("pLoginName", pLogin);
+                cmd.Parameters.AddWithValue("pNoteText", pNoteText);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    msgEntryStatus = "200";
+                }
+                catch (Exception e)
+                {
+                    return e.ToString();
+                }
+                return msgEntryStatus;
+
+            }
+        }
+
+
+        public string showNotes(string pLogin)
+        {
+
+            string sql = string.Format("EXEC private.getNotes " +
+                "@pLoginName= \"" + pLogin + "\"");
+
+            string noteText = null;
+            using (SqlDataAdapter myDataAdapter = new SqlDataAdapter(sql, connectionString))
+            {
+
+                DataTable result = new DataTable();
+                myDataAdapter.Fill(result);
+
+                foreach (DataRow o in result.Select())
+                {
+                   noteText = o["noteText"].ToString();
+                }
+
+            }
+
+
+
+
+            return noteText;
+        }
+
+        public string addNote(string pLogin, string pHeaderName, string pIngredients, string pRecipeText)
+        {
+            string sql = string.Format("EXEC private.uspAddRecipe " +
+                "@pLoginName= '" + pLogin+
+                "' , @pHeaderName= '" + pHeaderName+
+                "', @pIngredients=  '" + pIngredients+
+                "', @pRecipeText= '"+ pRecipeText+"'");
+            string lastId = null;
+
+            using (SqlDataAdapter myDataAdapter = new SqlDataAdapter(sql, connectionString))
+            {
+
+                DataTable result = new DataTable();
+                myDataAdapter.Fill(result);
+
+                foreach (DataRow o in result.Select())
+                {
+                    lastId = o["idnt"].ToString();
+                }
+
+            }
+            return lastId;
+        }
+
+        public string addImage(string pRecipeId , byte[] pFilePath)
+        {
+            string sql = string.Format("EXEC private.uspAddImage " +
+                "@pRecipeId," +
+                "@pFilePath "); 
+            using (SqlCommand cmd = new SqlCommand(sql, this.getSqlConnetion))
+            {
+
+                String msgEntryStatus;
+                cmd.Parameters.AddWithValue("pRecipeId", pRecipeId);
+                cmd.Parameters.Add("pFilePath", SqlDbType.VarBinary);
+                cmd.Parameters["pFilePath"].Value = pFilePath;
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    msgEntryStatus = "200";
+                }
+                catch (Exception e)
+                {
+                    return e.ToString();
+                }
+                return msgEntryStatus;
+
+            }
+        }
+
+        public int getRecipeNum()
+        {
+
+            string sql = string.Format("EXEC private.getRecipeNum ");
+
+            string num = null;
+            using (SqlDataAdapter myDataAdapter = new SqlDataAdapter(sql, connectionString))
+            {
+
+                DataTable result = new DataTable();
+                myDataAdapter.Fill(result);
+
+                foreach (DataRow o in result.Select())
+                {
+                    num = o["cnt"].ToString();
+                }
+
+            }
+            return Convert.ToInt32(num);
+        }
+
+
+
+        public void showRecipePreview(string[][] data)
+        {
+
+            string sql = string.Format("EXEC private.getRecipePreview ");
+
+            using (SqlDataAdapter myDataAdapter = new SqlDataAdapter(sql, connectionString))
+            {
+
+                DataTable result = new DataTable();
+                myDataAdapter.Fill(result);
+
+                int i = 0;
+                foreach (DataRow o in result.Select())
+                {
+                    data[i][0] = o["recipeId"].ToString();
+                    data[i][1] = o["headerName"].ToString();
+                    i++;
+                }
+            }
+        }
+
+
+
+
+        public string[] getFullRecipe( string pRecipeId)
+        {
+            string[] data = new string[3];
+            string sql = string.Format("EXEC private.getFullRecipe " +
+                "@precipeId= " + pRecipeId);
+            using (SqlDataAdapter myDataAdapter = new SqlDataAdapter(sql, connectionString))
+            {
+
+                DataTable result = new DataTable();
+                myDataAdapter.Fill(result);
+
+                foreach (DataRow o in result.Select())
+                {
+                    data[0] = o["headerName"].ToString();
+                    data[1] = o["ingredients"].ToString();
+                    data[2] = o["recipeText"].ToString();
+                }
+            }
+            return data;
+        }
+
+
 
 
     }
