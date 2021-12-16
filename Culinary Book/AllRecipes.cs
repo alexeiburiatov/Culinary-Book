@@ -38,7 +38,6 @@ namespace Culinary_Book
         private void ShowAllRecipes_Load(object sender, EventArgs e)
         {
             int recipeNum = db.getRecipeNum();
-            Console.WriteLine("recipeNum" + recipeNum);
             string[][] previewText = new string[recipeNum][];
             for (int i = 0; i < recipeNum; i++)
             {

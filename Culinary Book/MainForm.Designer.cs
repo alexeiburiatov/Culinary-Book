@@ -145,6 +145,7 @@ namespace Culinary_Book
             // textBoxEmailOutput
             // 
             this.textBoxEmailOutput.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxEmailOutput.Enabled = false;
             this.textBoxEmailOutput.Font = new System.Drawing.Font("Constantia", 14F);
             this.textBoxEmailOutput.Location = new System.Drawing.Point(350, 303);
             this.textBoxEmailOutput.Name = "textBoxEmailOutput";
@@ -156,6 +157,7 @@ namespace Culinary_Book
             // textBoxLNameOutput
             // 
             this.textBoxLNameOutput.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxLNameOutput.Enabled = false;
             this.textBoxLNameOutput.Font = new System.Drawing.Font("Constantia", 14F);
             this.textBoxLNameOutput.Location = new System.Drawing.Point(350, 259);
             this.textBoxLNameOutput.Name = "textBoxLNameOutput";
@@ -167,6 +169,7 @@ namespace Culinary_Book
             // textBoxFNameOutput
             // 
             this.textBoxFNameOutput.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxFNameOutput.Enabled = false;
             this.textBoxFNameOutput.Font = new System.Drawing.Font("Constantia", 14F);
             this.textBoxFNameOutput.Location = new System.Drawing.Point(350, 216);
             this.textBoxFNameOutput.Name = "textBoxFNameOutput";
@@ -178,7 +181,10 @@ namespace Culinary_Book
             // textBoxLoginOutput
             // 
             this.textBoxLoginOutput.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxLoginOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBoxLoginOutput.Enabled = false;
             this.textBoxLoginOutput.Font = new System.Drawing.Font("Constantia", 14F);
+            this.textBoxLoginOutput.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.textBoxLoginOutput.Location = new System.Drawing.Point(350, 172);
             this.textBoxLoginOutput.Name = "textBoxLoginOutput";
             this.textBoxLoginOutput.ReadOnly = true;

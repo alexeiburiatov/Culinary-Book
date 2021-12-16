@@ -35,7 +35,6 @@ namespace Culinary_Book
             this.ingredientsTextBox = new System.Windows.Forms.RichTextBox();
             this.recipeTextBox = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.returnButton = new System.Windows.Forms.Button();
             this.commentsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -102,21 +101,10 @@ namespace Culinary_Book
             this.label2.Text = "Фотографії";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // returnButton
-            // 
-            this.returnButton.Font = new System.Drawing.Font("Constantia", 8.25F);
-            this.returnButton.Location = new System.Drawing.Point(879, 12);
-            this.returnButton.Name = "returnButton";
-            this.returnButton.Size = new System.Drawing.Size(98, 31);
-            this.returnButton.TabIndex = 14;
-            this.returnButton.Text = "Повернутися";
-            this.returnButton.UseVisualStyleBackColor = true;
-            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
-            // 
             // commentsButton
             // 
             this.commentsButton.Font = new System.Drawing.Font("Constantia", 8.25F);
-            this.commentsButton.Location = new System.Drawing.Point(755, 12);
+            this.commentsButton.Location = new System.Drawing.Point(879, 12);
             this.commentsButton.Name = "commentsButton";
             this.commentsButton.Size = new System.Drawing.Size(98, 31);
             this.commentsButton.TabIndex = 15;
@@ -130,7 +118,6 @@ namespace Culinary_Book
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 561);
             this.Controls.Add(this.commentsButton);
-            this.Controls.Add(this.returnButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.loginLabelForm1);
@@ -158,7 +145,6 @@ namespace Culinary_Book
         private System.Windows.Forms.RichTextBox ingredientsTextBox;
         private System.Windows.Forms.RichTextBox recipeTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button returnButton;
         private System.Windows.Forms.Button commentsButton;
     }
 }

@@ -309,6 +309,53 @@ namespace Culinary_Book.Database
         }
 
 
+        public int getImageNum(string pRecipeId)
+        {
+
+            string sql = string.Format("EXEC private.getImageNum @pRecipeId= "+ pRecipeId);
+
+            string num = null;
+            using (SqlDataAdapter myDataAdapter = new SqlDataAdapter(sql, connectionString))
+            {
+
+                DataTable result = new DataTable();
+                myDataAdapter.Fill(result);
+
+                foreach (DataRow o in result.Select())
+                {
+                    num = o["cnt"].ToString();
+                }
+
+            }
+            return Convert.ToInt32(num);
+        }
+
+        public int getImage(string pRecipeId)
+        {
+
+            string sql = string.Format("EXEC private.getImage @pRecipeId= " + pRecipeId);
+
+            string num = null;
+            using (SqlDataAdapter myDataAdapter = new SqlDataAdapter(sql, connectionString))
+            {
+
+                DataTable result = new DataTable();
+                myDataAdapter.Fill(result);
+
+                int cnt = 1;
+                foreach (DataRow o in result.Select())
+                {
+                    System.IO.File.WriteAllBytes("C:\\tmp\\photo" + cnt + ".png", (byte[])o["img"]);
+                    cnt++;
+                }
+
+            }
+            return Convert.ToInt32(num);
+        }
+
+
+
+
 
         public void showRecipePreview(string[][] data)
         {
@@ -350,6 +397,55 @@ namespace Culinary_Book.Database
                     data[0] = o["headerName"].ToString();
                     data[1] = o["ingredients"].ToString();
                     data[2] = o["recipeText"].ToString();
+                }
+            }
+            return data;
+        }
+
+
+        public string addComment(string pRecipeId, string pLoginName, string pCommentText)
+        {
+            string sql = string.Format("EXEC private.uspAddComment " +
+                "@pRecipeId, " +
+                "@pLoginName, "+
+                "@pCommentText");
+            using (SqlCommand cmd = new SqlCommand(sql, this.getSqlConnetion))
+            {
+
+                String msgEntryStatus;
+                cmd.Parameters.AddWithValue("pRecipeId", pRecipeId);
+                cmd.Parameters.AddWithValue("pLoginName", pLoginName);
+                cmd.Parameters.AddWithValue("pCommentText", pCommentText);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    msgEntryStatus = "200";
+                }
+                catch (Exception e)
+                {
+                    return e.ToString();
+                }
+                return msgEntryStatus;
+
+            }
+        }
+
+
+        public List<string> getCommentsHistory(string pRecipeId)
+        {
+            List<string> data = new List<string>();
+
+            string sql = string.Format("EXEC private.getCommentsHistory " +
+                "@precipeId= " + pRecipeId);
+            using (SqlDataAdapter myDataAdapter = new SqlDataAdapter(sql, connectionString))
+            {
+
+                DataTable result = new DataTable();
+                myDataAdapter.Fill(result);
+
+                foreach (DataRow o in result.Select())
+                {
+                    data.Add(o["txt"].ToString());
                 }
             }
             return data;

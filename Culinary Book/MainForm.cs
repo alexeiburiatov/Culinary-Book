@@ -29,6 +29,7 @@ namespace Culinary_Book
             this.textBoxFNameOutput.Text = usrInfo[0];
             this.textBoxLNameOutput.Text = usrInfo[1];
             this.textBoxEmailOutput.Text = usrInfo[2];
+            Directory.CreateDirectory(@"C:\tmp");
 
         }
 
@@ -77,7 +78,9 @@ namespace Culinary_Book
 
         private void Exit_Click(object sender, EventArgs e)
         {
-           Application.Exit();
+            Directory.Delete(@"C:\tmp", true);
+            Application.Exit();
         }
+
     }
 }
